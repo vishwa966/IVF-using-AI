@@ -11,7 +11,7 @@ function App() {
         {/* <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/analyze" element={authToken ? <EmbryoAnalyzer/> : <Navigate to="/login" />} />*/}
-        <Route path="/" element={authToken ? <EmbryoAnalyzer/> : <Navigate to="/login" />} />
+        <Route path="/" element={ <EmbryoAnalyzer/> } />
       </Routes>
     </BrowserRouter>
   );
