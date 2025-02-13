@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Register from "./components/Register";
-import Login from "./components/Login";
+
 import EmbryoAnalyzer from "./embrioAnalyser"
 function App() {
   const authToken = localStorage.getItem("token");
