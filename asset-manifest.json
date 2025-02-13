@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ivf_ai_project/static/css/main.6a0fce67.css",
+    "main.js": "/ivf_ai_project/static/js/main.14272340.js",
+    "index.html": "/ivf_ai_project/index.html",
+    "main.6a0fce67.css.map": "/ivf_ai_project/static/css/main.6a0fce67.css.map",
+    "main.14272340.js.map": "/ivf_ai_project/static/js/main.14272340.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6a0fce67.css",
+    "static/js/main.14272340.js"
+  ]
+}
