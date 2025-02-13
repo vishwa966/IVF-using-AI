@@ -50,6 +50,7 @@ const EmbryoAnalyzer = () => {
         {prediction && (
           <div className="result">
             <p className="result-text">Prediction: <span>{prediction}</span></p>
+            {prediction==="Healthy"?<p>It is suitable for IVF</p>:<p>It is not suitable for IVf</p>}
             <p className="result-text">Confidence: <span>{confidence.toFixed(2)}</span></p>
           </div>
         )}
