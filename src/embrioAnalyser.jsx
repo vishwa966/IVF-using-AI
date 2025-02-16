@@ -23,7 +23,7 @@ const EmbryoAnalyzer = () => {
     const token = localStorage.getItem("token"); // ✅ Get JWT from localStorage
 
     try {
-        const response = await axios.post("http://127.0.0.1:5000/analyze", formData, {
+        const response = await axios.post("https://flask-ivf-backend-a189.onrender.com/analyze", formData, {
             headers: { 
                 "Authorization": token,  // ✅ Send token in request
                 "Content-Type": "multipart/form-data"
