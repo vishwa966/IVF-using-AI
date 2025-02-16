@@ -2,6 +2,7 @@
   "name": "ivf_ai",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vishwa966.github.io/ivf_ai_project",
   "dependencies": {
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
