@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = ({ setAuthToken }) => {
@@ -8,14 +9,16 @@ const Login = ({ setAuthToken }) => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
 
   const handleChange = (e) => setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://127.0.0.1:5000/login", credentials);
       localStorage.setItem("token", response.data.token);
-      setAuthToken(response.data.token);
       alert("Login successful!");
+      navigate("/analyze");  // ✅ Auto-redirect
+
     } catch (error) {
       console.error("Login error:", error);
       alert("Invalid credentials");

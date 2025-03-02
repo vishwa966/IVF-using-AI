@@ -6,6 +6,7 @@ const EmbryoAnalyzer = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [prediction, setPrediction] = useState(null);
   const [confidence, setConfidence] = useState(null);
+  const [loading, setLoading] = useState(false); // ✅ Added loading state
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -13,31 +14,34 @@ const EmbryoAnalyzer = () => {
 
   const handleUpload = async () => {
     if (!selectedFile) {
-        alert("Please select an image first");
-        return;
+      alert("Please select an image first");
+      return;
     }
+
+    setLoading(true); // ✅ Show loading state
 
     const formData = new FormData();
     formData.append("image", selectedFile);
 
-    const token = localStorage.getItem("token"); // ✅ Get JWT from localStorage
+    const token = localStorage.getItem("token");
 
     try {
-        const response = await axios.post("http://127.0.0.1:5000/analyze", formData, {
-            headers: { 
-                "Authorization": token,  // ✅ Send token in request
-                "Content-Type": "multipart/form-data"
-            },
-        });
+      const response = await axios.post("http://127.0.0.1:5000/analyze", formData, {
+        headers: { 
+          "Authorization": token,
+          "Content-Type": "multipart/form-data"
+        },
+      });
 
-        setPrediction(response.data.prediction);
-        setConfidence(response.data.confidence);
+      setPrediction(response.data.prediction);
+      setConfidence(response.data.confidence);
     } catch (error) {
-        console.error("Error uploading file: ", error);
-        alert("Session expired. Please log in again.");
+      console.error("Error uploading file: ", error);
+      alert("Session expired. Please log in again.");
+    } finally {
+      setLoading(false); // ✅ Hide loading state
     }
-};
-
+  };
 
   return (
     <div className="container">
@@ -46,11 +50,22 @@ const EmbryoAnalyzer = () => {
         <h1 className="title">Embryo Health Analyzer</h1>
         <p className="description">Upload an embryo image to analyze its health.</p>
         <input type="file" onChange={handleFileChange} className="file-input" />
-        <button onClick={handleUpload} className="analyze-button">Analyze</button>
+        
+        {/* ✅ Button with loader icon */}
+        <button onClick={handleUpload} className="analyze-button" disabled={loading}>
+          {loading ? (
+            <>
+              <span className="loader"></span> Analyzing...
+            </>
+          ) : (
+            "Analyze"
+          )}
+        </button>
+
         {prediction && (
           <div className="result">
             <p className="result-text">Prediction: <span>{prediction}</span></p>
-            {prediction==="Healthy"?<p>It is suitable for IVF</p>:<p>It is not suitable for IVf</p>}
+            {prediction === "Healthy" ? <p>It is suitable for IVF</p> : <p>It is not suitable for IVF</p>}
             <p className="result-text">Confidence: <span>{confidence.toFixed(2)}</span></p>
           </div>
         )}

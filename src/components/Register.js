@@ -12,7 +12,8 @@ const Register = () => {
         contact_number: "",
         address: "",
         username: "",
-        password: ""
+        password: "",
+        id:Math.random()
     });
 
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Register = () => {
         e.preventDefault();
         try {
             const response = await axios.post("http://127.0.0.1:5000/register", formData);
-            
+            console.log(response)
             if (response.data.token) {
                 localStorage.setItem("token", response.data.token);  // ✅ Store token
                 alert("Registration successful! Redirecting to analysis...");
