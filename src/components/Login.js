@@ -16,7 +16,7 @@ const Login = ({ setAuthToken }) => {
     try {
       const response = await axios.post("http://127.0.0.1:5000/login", credentials);
       localStorage.setItem("token", response.data.token);
-      alert("Login successful!");
+     
       navigate("/analyze");  // ✅ Auto-redirect
 
     } catch (error) {
