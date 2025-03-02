@@ -14,7 +14,7 @@ console.log("token",authToken)
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/analyze" element={authToken ? <EmbryoAnalyzer/> : <Navigate to="/login" />} />
-        <Route path="/" element={ <EmbryoAnalyzer/> } />
+        <Route path="/"  element={authToken ? <EmbryoAnalyzer/> : <Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
   );
